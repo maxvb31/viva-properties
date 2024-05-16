@@ -2,3 +2,12 @@
 from = "/*"
 to = "/index.html"
 status = 200
+
+[build]
+  base = "frontend"
+  publish = "frontend/build"
+  command = "npm run build"
+
+# Optional if you have Netlify Functions
+[functions]
+  directory = "netlify/functions"
