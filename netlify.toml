@@ -5,7 +5,7 @@ status = 200
 
 [build]
   base = "frontend"
-  publish = "frontend/build"
+  publish = "build"
   command = "npm run build"
 
 # Optional if you have Netlify Functions
