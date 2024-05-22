@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import client from '../client';
 import { Link } from 'react-router-dom';
-
+import SearchBar from '../components/SearchBar'; // Adjust the import path if needed
 
 export default function Blog() {
   const [featuredPosts, setFeaturedPosts] = useState([]);
@@ -52,6 +52,7 @@ export default function Blog() {
       <div className="container p-3">
         <h1 className="display-3 fw-bold">Blog Page</h1>
         <h4>You are viewing <span className="fw-bold">{allPosts.length}</span> blog posts</h4>
+        <SearchBar />
 
         {featuredPosts.length > 0 && (
           <div>

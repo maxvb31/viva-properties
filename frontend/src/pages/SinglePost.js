@@ -20,6 +20,9 @@ export default function SinglePost() {
               url
             },
             alt
+          },
+          author-> {  // Fetch the author's name
+            name
           }
         }`
       )
@@ -42,7 +45,7 @@ export default function SinglePost() {
           {singlePost.mainImage && (
             <img className="img-fluid" src={singlePost.mainImage.asset.url} alt={singlePost.title} />
           )}
-          <p>By Max</p>
+          <p> Hosted by {singlePost.author.name}</p>
           <div>
             <BlockContent blocks={singlePost.body} projectId="7wz6aui0" dataset="production" />
           </div>
