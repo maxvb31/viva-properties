@@ -53,13 +53,13 @@ export default function Blog() {
   return (
     <section>
       <div className="container p-3">
-        <h1 className="display-3 fw-bold">Blog Page</h1>
-        <h4>You are viewing <span className="fw-bold">{allPosts.length}</span> blog posts</h4>
+        <h1 className="display-3 fw-bold">Find Properties</h1>
+        <h4>You are viewing <span className="fw-bold">{allPosts.length}</span> properties</h4>
         <SearchBar posts={allPosts} />
 
         {featuredPosts.length > 0 && (
           <div>
-            <h2 className="section-headers">Featured Post</h2>
+            <h2 className="section-headers">Featured Property</h2>
             <div className="row mb-4">
               {featuredPosts.map((post) => (
                 <div key={post.slug.current} className="col-12">
@@ -76,7 +76,7 @@ export default function Blog() {
                       <h5 className="card-title">{post.title}</h5>
                       <button className="btn btn-dark">
                         <Link className="text-decoration-none text-light" to={`/blog/${post.slug.current}`}>
-                          Read more
+                          View
                         </Link>
                       </button>
                     </div>
@@ -87,7 +87,7 @@ export default function Blog() {
           </div>
         )}
 
-        <h2 className="section-headers">All Posts</h2>
+        <h2 className="section-headers">All Properties</h2>
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {allPosts.map((post) => (
             <div key={post.slug.current} className="col">
@@ -104,7 +104,7 @@ export default function Blog() {
                   <h5 className="card-title">{post.title}</h5>
                   <button className="btn btn-dark">
                     <Link className="text-decoration-none text-light" to={`/blog/${post.slug.current}`}>
-                      Read more
+                      View
                     </Link>
                   </button>
                 </div>
@@ -112,10 +112,11 @@ export default function Blog() {
             </div>
           ))}
         </div>
-
+        <div className="py-3">
         {/* Add the Map component here */}
         <h2 className="section-headers">Map of Posts</h2>
         <Map posts={allPosts} />
+        </div>
       </div>
     </section>
   );

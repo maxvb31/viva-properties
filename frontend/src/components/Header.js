@@ -6,14 +6,14 @@ export default function Header() {
     <>
       <header className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
-          <Link className="navbar-brand" to="/">Max's Blog</Link>
+          <Link className="navbar-brand" to="/">Viva Properties</Link>
           <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
                 <Link className="nav-link" to="/">Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/blog">Blog</Link>
+                <Link className="nav-link" to="/blog">Properties</Link>
               </li>
             </ul>
           </div>

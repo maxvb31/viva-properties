@@ -21,6 +21,8 @@ export default function SinglePost() {
             },
             alt
           },
+          bedrooms,
+          beds,
           author-> {  // Fetch the author's name
             name
           }
@@ -45,12 +47,22 @@ export default function SinglePost() {
           {singlePost.mainImage && (
             <img className="img-fluid" src={singlePost.mainImage.asset.url} alt={singlePost.title} />
           )}
-          <p> Hosted by {singlePost.author.name}</p>
+          <div className="row">
+            <div className="col-md-2">
+              <p>Hosted by {singlePost.author.name}</p>
+            </div>
+            <div className="col-md-2">
+              <p>{singlePost.bedrooms} bedrooms</p>
+            </div>
+            <div className="col-md-2">
+              <p>{singlePost.beds} beds</p>
+            </div>
+          </div>
           <div>
             <BlockContent blocks={singlePost.body} projectId="7wz6aui0" dataset="production" />
           </div>
           <button className="btn btn-dark mb-3">
-            <Link className="text-decoration-none text-light" to="/blog">Read more articles</Link>
+            <Link className="text-decoration-none text-light" to="/blog">See more properties</Link>
           </button>
         </section>
       ) : (
