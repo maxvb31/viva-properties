@@ -45,6 +45,16 @@ export default defineType({
       of: [{ type: 'reference', to: { type: 'category' } }],
     }),
     defineField({
+      name: 'longitude',
+      title: 'Longitude',
+      type: 'number',
+    }),
+    defineField({
+      name: 'latitude',
+      title: 'Latitude',
+      type: 'number',
+    }),
+    defineField({
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
