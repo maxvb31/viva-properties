@@ -8,7 +8,7 @@ export const deskStructure = (S, context) =>
     .items([
       orderableDocumentListDeskItem({ type: 'post', S, context }), // Make posts orderable
       S.divider(),
-      // Add additional list items as needed
+      // Add additional list items if
     ]);
 
-export default deskStructure; // Export the deskStructure function
+export default deskStructure;
