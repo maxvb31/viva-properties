@@ -26,7 +26,7 @@ const Map = ({ posts }) => {
           icon={customIcon}
         >
           <Popup>
-            <Link to={`/blog/${post.slug.current}`}>{post.title}</Link>
+            <Link to={`/properties/${post.slug.current}`}>{post.title}</Link>
           </Popup>
         </Marker>
       ))}

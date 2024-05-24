@@ -13,7 +13,7 @@ export default function Header() {
                 <Link className="nav-link" to="/">Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/blog">Properties</Link>
+                <Link className="nav-link" to="/properties">Properties</Link>
               </li>
             </ul>
           </div>

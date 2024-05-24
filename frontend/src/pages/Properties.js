@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Map from '../components/Map';
 import SearchBar from '../components/SearchBar';
 
-export default function Blog() {
+export default function Properties() {
   const [featuredPosts, setFeaturedPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
 
@@ -75,7 +75,7 @@ export default function Blog() {
                     <div className="card-body">
                       <h5 className="card-title">{post.title}</h5>
                       <button className="btn btn-dark">
-                        <Link className="text-decoration-none text-light" to={`/blog/${post.slug.current}`}>
+                        <Link className="text-decoration-none text-light" to={`/properties/${post.slug.current}`}>
                           View
                         </Link>
                       </button>
@@ -103,7 +103,7 @@ export default function Blog() {
                 <div className="card-body">
                   <h5 className="card-title">{post.title}</h5>
                   <button className="btn btn-dark">
-                    <Link className="text-decoration-none text-light" to={`/blog/${post.slug.current}`}>
+                    <Link className="text-decoration-none text-light" to={`/properties/${post.slug.current}`}>
                       View
                     </Link>
                   </button>

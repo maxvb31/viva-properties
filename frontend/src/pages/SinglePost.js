@@ -24,7 +24,7 @@ export default function SinglePost() {
           },
           bedrooms,
           beds,
-          author-> {  
+          host-> {  
             name
           }
         }`
@@ -50,7 +50,7 @@ export default function SinglePost() {
           )}
           <div className="row">
             <div className="col-md-8">
-              <p className="d-inline-block me-3 fw-bold">Hosted by {singlePost.author.name}</p>
+              <p className="d-inline-block me-3 fw-bold">Hosted by {singlePost.host.name}</p>
               <p className="d-inline-block me-3 fw-bold">{singlePost.bedrooms} bedrooms</p>
               <p className="d-inline-block fw-bold">{singlePost.beds} beds</p>
               <div>
@@ -62,7 +62,7 @@ export default function SinglePost() {
             </div>
           </div>
           <button className="btn btn-dark mb-3 mt-4">
-            <Link className="text-decoration-none text-light" to="/blog">See more properties</Link>
+            <Link className="text-decoration-none text-light" to="/properties">See more properties</Link>
           </button>
         </section>
       ) : (

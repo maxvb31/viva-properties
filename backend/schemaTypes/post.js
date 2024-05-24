@@ -25,10 +25,10 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'author',
-      title: 'Author',
+      name: 'host',
+      title: 'Host',
       type: 'reference',
-      to: { type: 'author' },
+      to: { type: 'host' },
     }),
     defineField({
       name: 'mainImage',

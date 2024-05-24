@@ -1,4 +1,6 @@
-import {defineField, defineType} from 'sanity'
+
+
+import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'category',
@@ -15,5 +17,19 @@ export default defineType({
       title: 'Description',
       type: 'text',
     }),
+    defineField({
+      name: 'icon', 
+      title: 'Icon',
+      type: 'image', 
+      options: {
+        hotspot: true, 
+      },
+    }),
   ],
-})
+  preview: {
+    select: {
+      title: 'title',
+      media: 'icon', // Use the 'icon' field as the media
+    },
+  },
+});

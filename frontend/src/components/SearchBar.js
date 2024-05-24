@@ -53,7 +53,7 @@ export default function SearchBar() {
         <ul className="list-group mt-3">
           {results.map((post) => (
             <li key={post.slug.current} className="list-group-item">
-              <Link to={`/blog/${post.slug.current}`}>{post.title}</Link>
+              <Link to={`/properties/${post.slug.current}`}>{post.title}</Link>
             </li>
           ))}
         </ul>
