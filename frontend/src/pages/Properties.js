@@ -9,6 +9,7 @@ export default function Properties() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
+  const [featuredPost, setFeaturedPost] = useState(null);
 
   useEffect(() => {
     // Fetch categories
@@ -36,12 +37,17 @@ export default function Properties() {
             slug
           },
           longitude,
-          latitude
+          latitude,
+          featured
         }`
       )
       .then((data) => {
-        setPosts(data);
-        setAllPosts(data);
+        const allPostsData = data.filter(post => !post.featured);
+        const featuredPostData = data.find(post => post.featured);
+
+        setPosts(allPostsData);
+        setAllPosts(allPostsData);
+        setFeaturedPost(featuredPostData);
       })
       .catch(console.error);
   }, []);
@@ -86,6 +92,35 @@ export default function Properties() {
         </div>
         <p className="text-center mb-3">Viewing {filteredPosts.length} properties</p>
         <SearchBar posts={allPosts} />
+        {featuredPost && (
+          <div className="row mb-4">
+            <div className="col">
+              <div className="card shadow rounded-3">
+                {featuredPost.mainImage && (
+                  <div style={{ height: '350px', overflow: 'hidden' }}>
+                    <img
+                      src={featuredPost.mainImage.asset.url}
+                      className="card-img-top img-fluid"
+                      alt={featuredPost.title}
+                      style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                    />
+                  </div>
+                )}
+                <div className="card-body d-flex align-items-center justify-content-between">
+                  <div>
+                    <h5 className="card-title">
+                      {featuredPost.title}
+                      <span className="badge bg-primary ms-2">Featured</span>
+                    </h5>
+                  </div>
+                  <Link to={`/properties/${featuredPost.slug.current}`} className="btn btn-dark">
+                    View
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {filteredPosts.map((post) => (
             <div key={post.slug.current} className="col">
