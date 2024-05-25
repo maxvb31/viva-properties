@@ -1,5 +1,4 @@
-
-
+// category.js
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
@@ -24,6 +23,15 @@ export default defineType({
       options: {
         hotspot: true, 
       },
+    }),
+    // Add a new field for category ID
+    defineField({
+      name: 'categoryId',
+      title: 'Category ID',
+      type: 'string',
+      hidden: false, // Hide this field in the CMS
+      readOnly: false, // Make it read-only
+      initialValue: () => Math.random().toString(36).substr(2, 9), // Generate a random ID
     }),
   ],
   preview: {
