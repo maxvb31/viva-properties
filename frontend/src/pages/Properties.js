@@ -40,6 +40,7 @@ export default function Properties() {
         }`
       )
       .then((data) => {
+        setPosts(data);
         setAllPosts(data);
       })
       .catch(console.error);
@@ -50,10 +51,10 @@ export default function Properties() {
   };
 
   const filteredPosts = selectedCategory
-    ? allPosts.filter((post) =>
+    ? posts.filter((post) =>
         post.categories && post.categories.some((category) => category.title === selectedCategory)
       )
-    : allPosts;
+    : posts;
 
   return (
     <section>
