@@ -18,7 +18,7 @@ export default function Properties() {
       .then((data) => setCategories(data))
       .catch(console.error);
 
-    // Fetch all posts with mainImage
+    // Fetch all posts with mainImage and pricePerNight
     client
       .fetch(
         `*[_type == "post"] | order(orderRank asc) {
@@ -38,7 +38,8 @@ export default function Properties() {
           },
           longitude,
           latitude,
-          featured
+          featured,
+          pricePerNight
         }`
       )
       .then((data) => {
@@ -92,12 +93,12 @@ export default function Properties() {
         </div>
         <p className="text-center mb-3">Viewing {filteredPosts.length} properties</p>
         <SearchBar posts={allPosts} />
-        {featuredPost && (
+        {!selectedCategory && featuredPost && (
           <div className="row mb-4">
             <div className="col">
               <div className="card shadow rounded-3">
                 {featuredPost.mainImage && (
-                  <div style={{ height: '350px', overflow: 'hidden' }}>
+                  <div style={{ height: '250px', overflow: 'hidden' }}>
                     <img
                       src={featuredPost.mainImage.asset.url}
                       className="card-img-top img-fluid"
@@ -108,10 +109,11 @@ export default function Properties() {
                 )}
                 <div className="card-body d-flex align-items-center justify-content-between">
                   <div>
-                    <h5 className="card-title">
+                    <h5 className="card-title d-flex align-items-center">
                       {featuredPost.title}
                       <span className="badge bg-primary ms-2">Featured</span>
                     </h5>
+                    <p className="card-text">${featuredPost.pricePerNight} per night</p>
                   </div>
                   <Link to={`/properties/${featuredPost.slug.current}`} className="btn btn-dark">
                     View
@@ -137,6 +139,7 @@ export default function Properties() {
                 )}
                 <div className="card-body">
                   <h5 className="card-title">{post.title}</h5>
+                  <p className="card-text">${post.pricePerNight} per night</p>
                   <Link to={`/properties/${post.slug.current}`} className="btn btn-dark">
                     View
                   </Link>

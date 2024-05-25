@@ -24,6 +24,7 @@ export default function SinglePost() {
           },
           bedrooms,
           beds,
+          pricePerNight,
           host-> {  
             name
           }
@@ -57,13 +58,14 @@ export default function SinglePost() {
             <div className="col-md-8">
               <p className="d-inline-block me-3 fw-bold">Hosted by {singlePost.host.name}</p>
               <p className="d-inline-block me-3 fw-bold">{singlePost.bedrooms} bedrooms</p>
-              <p className="d-inline-block fw-bold">{singlePost.beds} beds</p>
+              <p className="d-inline-block me-3 fw-bold">{singlePost.beds} beds</p>
+              <p className="d-inline-block me-3 fw-bold">${singlePost.pricePerNight} per night</p>
               <div>
                 <BlockContent blocks={singlePost.body} projectId="7wz6aui0" dataset="production" />
               </div>
             </div>
             <div className="col-md-4">
-              <BookingComponent />
+              <BookingComponent pricePerNight={singlePost.pricePerNight} maxGuests={singlePost.beds} />
             </div>
           </div>
           <button className="btn btn-dark mb-3 mt-4">

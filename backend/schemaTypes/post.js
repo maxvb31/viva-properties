@@ -65,6 +65,11 @@ export default defineType({
       type: 'number',
     }),
     defineField({
+      name: 'pricePerNight',
+      title: 'Price per Night',
+      type: 'number',
+    }),
+    defineField({
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
