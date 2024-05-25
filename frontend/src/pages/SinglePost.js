@@ -46,7 +46,12 @@ export default function SinglePost() {
         <section className="container">
           <h1 className='display-2 fw-bold text-center'>{singlePost.title}</h1>
           {singlePost.mainImage && (
-            <img className="img-fluid mb-4" src={singlePost.mainImage.asset.url} alt={singlePost.title} />
+            <img
+              className="img-fluid mb-4"
+              src={singlePost.mainImage.asset.url}
+              alt={singlePost.title}
+              style={{ objectFit: 'cover', width: '100%', maxHeight: '600px' }}
+            />
           )}
           <div className="row">
             <div className="col-md-8">

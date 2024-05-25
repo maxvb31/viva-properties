@@ -13,7 +13,7 @@ export default function Properties() {
   useEffect(() => {
     // Fetch categories
     client
-      .fetch('*[_type == "category"] { title, _id }')
+      .fetch('*[_type == "category"] { title, _id, "iconUrl": icon.asset->url }')
       .then((data) => setCategories(data))
       .catch(console.error);
 
@@ -45,8 +45,8 @@ export default function Properties() {
       .catch(console.error);
   }, []);
 
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
+  const handleCategoryClick = (categoryTitle) => {
+    setSelectedCategory(categoryTitle);
   };
 
   const filteredPosts = selectedCategory
@@ -59,24 +59,31 @@ export default function Properties() {
     <section>
       <div className="container p-3">
         <h1 className="display-3 fw-bold">Find Properties</h1>
-        <div className="mb-3">
-          <label htmlFor="categorySelect" className="form-label">
-            Select a Category:
-          </label>
-          <select
-            className="form-select"
-            id="categorySelect"
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-          >
-            <option value="">All Categories</option>
-            {categories.map((category) => (
-              <option key={category._id} value={category.title}>
-                {category.title}
-              </option>
-            ))}
-          </select>
+        <div className="d-flex justify-content-center">
+          <div className="mb-3">
+            <ul className="list-unstyled d-flex flex-wrap justify-content-center align-items-center pt-4">
+              {categories.map((category) => (
+                <li
+                  key={category._id}
+                  className={`me-3 mb-3 category-link${selectedCategory === category.title ? ' active' : ''}`}
+                  onClick={() => handleCategoryClick(category.title)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <div className="d-flex flex-column align-items-center">
+                    <img
+                      src={category.iconUrl}
+                      alt={category.title}
+                      className="me-2"
+                      style={{ width: '48px', height: '48px' }}
+                    />
+                    <div className="text-center">{category.title}</div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
+        <p className="text-center mb-3">Viewing {filteredPosts.length} properties</p>
         <SearchBar posts={allPosts} />
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {filteredPosts.map((post) => (
