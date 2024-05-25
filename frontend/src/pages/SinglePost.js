@@ -8,6 +8,7 @@ export default function SinglePost() {
   const [singlePost, setSinglePost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const { slug } = useParams();
+  const [mainImageAspectRatio, setMainImageAspectRatio] = useState(null); // State to track main image aspect ratio
 
   useEffect(() => {
     client
@@ -16,6 +17,18 @@ export default function SinglePost() {
           title,
           body,
           mainImage {
+            asset -> {
+              _id,
+              url,
+              metadata {
+                dimensions {
+                  aspectRatio
+                }
+              }
+            },
+            alt
+          },
+          propertyImages[]{
             asset -> {
               _id,
               url
@@ -33,6 +46,7 @@ export default function SinglePost() {
       .then((data) => {
         if (data.length > 0) {
           setSinglePost(data[0]);
+          setMainImageAspectRatio(data[0]?.mainImage?.asset?.metadata?.dimensions?.aspectRatio);
         }
         setIsLoading(false);
       })
@@ -46,20 +60,44 @@ export default function SinglePost() {
       ) : singlePost ? (
         <section className="container">
           <h1 className='display-2 fw-bold text-center'>{singlePost.title}</h1>
-          {singlePost.mainImage && (
-            <img
-              className="img-fluid mb-4"
-              src={singlePost.mainImage.asset.url}
-              alt={singlePost.title}
-              style={{ objectFit: 'cover', width: '100%', maxHeight: '600px' }}
-            />
-          )}
+          <div className="row">
+            <div className="col-md-6">
+              {singlePost.mainImage && (
+                <img
+                  className="img-fluid mb-4"
+                  src={singlePost.mainImage.asset.url}
+                  alt={singlePost.title}
+                  style={{ objectFit: 'cover', width: '100%', height: 'auto', maxHeight: '600px' }}
+                />
+              )}
+            </div>
+            <div className="col-md-6">
+              <div className="row g-3">
+                {singlePost.propertyImages &&
+                  singlePost.propertyImages.map((image, index) => (
+                    <div key={index} className="col-6" style={{ maxHeight: '50%', overflow: 'hidden' }}>
+                      <img
+                        className="img-fluid"
+                        src={image.asset.url}
+                        alt={image.alt || `Property Image ${index + 1}`}
+                        style={{
+                          objectFit: 'cover',
+                          width: '100%',
+                          height: '97%',
+                          aspectRatio: mainImageAspectRatio
+                        }}
+                      />
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
           <div className="row">
             <div className="col-md-8">
               <p className="d-inline-block me-3 fw-bold">Hosted by {singlePost.host.name}</p>
               <p className="d-inline-block me-3 fw-bold">{singlePost.bedrooms} bedrooms</p>
               <p className="d-inline-block me-3 fw-bold">{singlePost.beds} beds</p>
-              <p className="d-inline-block me-3 fw-bold">${singlePost.pricePerNight} per night</p>
+              <p className="d-inline-block fw-bold">${singlePost.pricePerNight} per night</p>
               <div>
                 <BlockContent blocks={singlePost.body} projectId="7wz6aui0" dataset="production" />
               </div>
