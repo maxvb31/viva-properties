@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 import { loadStripe } from '@stripe/stripe-js';
 
 const BookingComponent = ({ pricePerNight, maxGuests }) => {
@@ -10,7 +9,6 @@ const BookingComponent = ({ pricePerNight, maxGuests }) => {
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [guests, setGuests] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
-  const navigate = useNavigate(); // Get the navigate function
 
   useEffect(() => {
     if (checkInDate && checkOutDate) {
@@ -19,10 +17,6 @@ const BookingComponent = ({ pricePerNight, maxGuests }) => {
       setTotalPrice(diffDays * pricePerNight);
     }
   }, [checkInDate, checkOutDate, pricePerNight]);
-
-  const handleReserve = () => {
-    alert(`Reservation made for ${guests} guests from ${checkInDate.toLocaleDateString()} to ${checkOutDate.toLocaleDateString()}`);
-  };
 
   const handlePayment = async () => {
     const stripe = await loadStripe('pk_test_51PKQUQP2WcwkR8ROJgqNwKFc7ClAFBsFWiBB8xXG6rVmrDCFVPo4v3c1a1GujXYCaQ43syldKB2WBhqQI2yCilsD00rjnzHVZR');
@@ -91,7 +85,7 @@ const BookingComponent = ({ pricePerNight, maxGuests }) => {
         />
       </div>
       <hr />
-      <button className="btn btn-primary w-100 mt-2" onClick={handlePayment}>Reserve</button> {/* Add Get Course Access button */}
+      <button className="btn btn-primary w-100 mt-2" onClick={handlePayment}>Reserve</button>
       {checkInDate && checkOutDate && (
         <p className="fw-bold">Total Price: ${totalPrice}</p>
       )}
