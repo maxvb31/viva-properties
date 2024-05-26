@@ -14,7 +14,7 @@ function App() {
         <Route path="/" exact element={<Homepage />} />
         <Route path="/properties/:slug" element={<SinglePost />} />
         <Route path="/properties" element={<Properties />} />
-        <Route path="/payment" element={<PaymentPage />} />  // Add the payment page route
+        <Route path="/payment" element={<PaymentPage />} /> 
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
