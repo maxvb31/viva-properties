@@ -114,10 +114,10 @@ export default function Properties() {
                       <span className="badge bg-primary ms-2">Featured</span>
                     </h5>
                     <p className="card-text">${featuredPost.pricePerNight} per night</p>
-                  </div>
-                  <Link to={`/properties/${featuredPost.slug.current}`} className="btn btn-dark">
+                    <Link to={`/properties/${featuredPost.slug.current}`} className="btn btn-dark">
                     View
                   </Link>
+                  </div>
                 </div>
               </div>
             </div>
