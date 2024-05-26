@@ -4,6 +4,7 @@ import Properties from "./pages/Properties";
 import SinglePost from "./pages/SinglePost";
 import Error from "./pages/Error";
 import Homepage from "./pages/Homepage";
+import PaymentPage from "./pages/PaymentPage";  
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" exact element={<Homepage />} />
         <Route path="/properties/:slug" element={<SinglePost />} />
         <Route path="/properties" element={<Properties />} />
+        <Route path="/payment" element={<PaymentPage />} />  // Add the payment page route
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>

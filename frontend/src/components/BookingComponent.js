@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
+import { loadStripe } from '@stripe/stripe-js';
 
 const BookingComponent = ({ pricePerNight, maxGuests }) => {
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [guests, setGuests] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate(); // Get the navigate function
 
   useEffect(() => {
     if (checkInDate && checkOutDate) {
@@ -19,6 +22,33 @@ const BookingComponent = ({ pricePerNight, maxGuests }) => {
 
   const handleReserve = () => {
     alert(`Reservation made for ${guests} guests from ${checkInDate.toLocaleDateString()} to ${checkOutDate.toLocaleDateString()}`);
+  };
+
+  const handlePayment = async () => {
+    const stripe = await loadStripe('pk_test_51PKQUQP2WcwkR8ROJgqNwKFc7ClAFBsFWiBB8xXG6rVmrDCFVPo4v3c1a1GujXYCaQ43syldKB2WBhqQI2yCilsD00rjnzHVZR');
+  
+    try {
+      const timeDiff = Math.abs(checkOutDate.getTime() - checkInDate.getTime());
+      const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      
+      const { error } = await stripe.redirectToCheckout({
+        lineItems: [{
+          price: 'price_1PKj3tP2WcwkR8RObH94KJnj',
+          quantity: diffDays, // Set quantity to number of nights
+        }],
+        mode: 'payment',
+        successUrl: 'http://localhost:3000', // Corrected URL
+        cancelUrl: 'http://localhost:3000/cancel',   // Corrected URL
+      });
+  
+      if (error) {
+        console.error('Error during redirect to Checkout:', error);
+        // Handle error, show message to user, etc.
+      }
+    } catch (error) {
+      console.error('Error during redirect to Checkout:', error);
+      // Handle error, show message to user, etc.
+    }
   };
 
   const guestOptions = Array.from({ length: maxGuests }, (_, i) => ({
@@ -60,8 +90,8 @@ const BookingComponent = ({ pricePerNight, maxGuests }) => {
           classNamePrefix="select"
         />
       </div>
-      <button className="btn btn-primary w-100" onClick={handleReserve}>Reserve</button>
       <hr />
+      <button className="btn btn-primary w-100 mt-2" onClick={handlePayment}>Reserve</button> {/* Add Get Course Access button */}
       {checkInDate && checkOutDate && (
         <p className="fw-bold">Total Price: ${totalPrice}</p>
       )}
