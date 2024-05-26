@@ -72,8 +72,8 @@ const BookingForm = () => {
                     quantity: calculateNumberOfNights(checkInDate, checkOutDate)
                 }],
                 mode: 'payment',
-                successUrl: 'http://localhost:3000', // Corrected URL
-                cancelUrl: 'http://localhost:3000/cancel',   // Corrected URL
+                successUrl: 'https://vivaproperties.netlify.app/payment-success', // Corrected URL
+                cancelUrl: 'https://vivaproperties.netlify.app/*',   // Corrected URL
             });
 
             if (error) {
