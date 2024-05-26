@@ -103,7 +103,12 @@ export default function SinglePost() {
               </div>
             </div>
             <div className="col-md-4">
-              <BookingComponent pricePerNight={singlePost.pricePerNight} maxGuests={singlePost.beds} />
+              <BookingComponent 
+                pricePerNight={singlePost.pricePerNight} 
+                maxGuests={singlePost.beds} 
+                property={singlePost} // Pass the entire property object
+                slug={slug} // Pass the slug prop
+              />
             </div>
           </div>
           <button className="btn btn-dark mb-3 mt-4">
