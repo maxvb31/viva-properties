@@ -42,7 +42,6 @@ const BookingForm = () => {
             .catch(console.error);
 
         const loadStripeJs = async () => {
-            const stripe = await loadStripe('pk_test_51PKQUQP2WcwkR8ROJgqNwKFc7ClAFBsFWiBB8xXG6rVmrDCFVPo4v3c1a1GujXYCaQ43syldKB2WBhqQI2yCilsD00rjnzHVZR');
             setStripeLoading(false);
         };
 

@@ -27,15 +27,6 @@ const BookingComponent = ({ pricePerNight, maxGuests, property, slug }) => {
       return;
     }
     
-    const query = new URLSearchParams({
-      checkInDate: checkInDate.toISOString(),
-      checkOutDate: checkOutDate.toISOString(),
-      guests,
-      postTitle: property.title,
-      postImage: property.mainImage.asset.url,
-      pricePerNight
-    }).toString();
-    
     const url = `/booking/${slug}`;
     console.log('Navigating to:', url);
     navigate(url); // Use navigate function to navigate to the booking page
