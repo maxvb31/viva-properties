@@ -4,13 +4,13 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Link } from 'react-router-dom';
 
-// Defined a custom icon so pin ico can be used
+// Defined a custom icon so pin icon can be used
 const customIcon = L.icon({
-    iconUrl: process.env.PUBLIC_URL + '/pin.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-  });
+  iconUrl: process.env.PUBLIC_URL + '/pin.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+});
 
 const Map = ({ posts }) => {
   return (
@@ -22,11 +22,20 @@ const Map = ({ posts }) => {
       {posts.map((post) => (
         <Marker
           key={post.slug.current}
-          position={[post.latitude, post.longitude]} //use new location sanity data
+          position={[post.latitude, post.longitude]}
           icon={customIcon}
         >
           <Popup>
-            <Link to={`/properties/${post.slug.current}`}>{post.title}</Link>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              {post.mainImage && (
+                <img
+                  src={post.mainImage.asset.url}
+                  alt={post.title}
+                  style={{ width: '100px', height: '100px', objectFit: 'cover', marginBottom: '10px' }}
+                />
+              )}
+              <Link to={`/properties/${post.slug.current}`}>{post.title}</Link>
+            </div>
           </Popup>
         </Marker>
       ))}
