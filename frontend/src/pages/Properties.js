@@ -7,7 +7,6 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
 export default function Properties() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -67,42 +66,40 @@ export default function Properties() {
       )
     : posts;
 
-    const settings = {
-      dots: true,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 8,
-      slidesToScroll: 4,
-      initialSlide: 0,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 6,
-            slidesToScroll: 5,
-            initialSlide: 0,
-          }
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 8,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 6, // Match slidesToShow for better experience
+          initialSlide: 0,
         },
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 5,
-            slidesToScroll: 5, // Adjusted to 5
-            initialSlide: 0,
-          }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4, // Match slidesToShow for better experience
+          initialSlide: 0,
         },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3, // Adjusted to 3
-            initialSlide: 0,
-          }
-        }
-      ]
-    };
-    
-    
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2, // Match slidesToShow for better experience
+          initialSlide: 0,
+        },
+      },
+    ],
+  };
 
   return (
     <section>
@@ -151,8 +148,8 @@ export default function Properties() {
                     </h5>
                     <p className="card-text">£{featuredPost.pricePerNight} per night</p>
                     <Link to={`/properties/${featuredPost.slug.current}`} className="btn btn-dark">
-                    View
-                  </Link>
+                      View
+                    </Link>
                   </div>
                 </div>
               </div>
