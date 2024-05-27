@@ -95,8 +95,8 @@ export default function Properties() {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 4,
+          slidesToScroll: 4,
           initialSlide: 0,
         },
       },
