@@ -80,7 +80,7 @@ export default function Properties() {
         settings: {
           slidesToShow: 6,
           slidesToScroll: 5,
-          initialSlide: 0,
+          initialSlide: 1,
         }
       },
       {
@@ -88,7 +88,7 @@ export default function Properties() {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 4,
-          initialSlide: 0,
+          initialSlide: 1,
         }
       },
       {
@@ -96,7 +96,7 @@ export default function Properties() {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 3,
-          initialSlide: 0,
+          initialSlide: 1,
         }
       }
     ]
