@@ -97,7 +97,7 @@ export default function SinglePost() {
               <p className="d-inline-block me-3 fw-bold">Hosted by {singlePost.host.name}</p>
               <p className="d-inline-block me-3 fw-bold">{singlePost.bedrooms} bedrooms</p>
               <p className="d-inline-block me-3 fw-bold">{singlePost.beds} beds</p>
-              <p className="d-inline-block fw-bold">${singlePost.pricePerNight} per night</p>
+              <p className="d-inline-block fw-bold">£{singlePost.pricePerNight} per night</p>
               <div>
                 <BlockContent blocks={singlePost.body} projectId="7wz6aui0" dataset="production" />
               </div>

@@ -3,6 +3,10 @@ import client from '../client';
 import { Link } from 'react-router-dom';
 import Map from '../components/Map';
 import SearchBar from '../components/SearchBar';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 export default function Properties() {
   const [categories, setCategories] = useState([]);
@@ -63,32 +67,59 @@ export default function Properties() {
       )
     : posts;
 
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 8,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+  };
+
   return (
     <section>
       <div className="container p-3">
         <h1 className="display-3 fw-bold">Find Properties</h1>
         <div className="d-flex justify-content-center">
-          <div className="mb-3">
-            <ul className="list-unstyled d-flex flex-wrap justify-content-center align-items-center pt-4">
+          <div className="mb-3 w-100">
+            <Slider {...settings}>
               {categories.map((category) => (
-                <li
-                  key={category._id}
-                  className={`me-3 mb-3 category-link${selectedCategory === category.title ? ' active' : ''}`}
-                  onClick={() => handleCategoryClick(category.title)}
-                  style={{ cursor: 'pointer' }}
-                >
+                <div key={category._id} className="text-center slider-item" onClick={() => handleCategoryClick(category.title)} style={{ cursor: 'pointer', padding: '0 10px' }}>
                   <div className="d-flex flex-column align-items-center">
                     <img
                       src={category.iconUrl}
                       alt={category.title}
                       className="me-2"
-                      style={{ width: '48px', height: '48px' }}
+                      style={{ width: '48px', height: '48px', marginBottom: '10px' }}
                     />
-                    <div className="text-center">{category.title}</div>
+                    <div>{category.title}</div>
                   </div>
-                </li>
+                </div>
               ))}
-            </ul>
+            </Slider>
           </div>
         </div>
         <p className="text-center mb-3">Viewing {filteredPosts.length} properties</p>
@@ -113,7 +144,7 @@ export default function Properties() {
                       {featuredPost.title}
                       <span className="badge bg-primary ms-2">Featured</span>
                     </h5>
-                    <p className="card-text">${featuredPost.pricePerNight} per night</p>
+                    <p className="card-text">£{featuredPost.pricePerNight} per night</p>
                     <Link to={`/properties/${featuredPost.slug.current}`} className="btn btn-dark">
                     View
                   </Link>
@@ -139,7 +170,7 @@ export default function Properties() {
                 )}
                 <div className="card-body">
                   <h5 className="card-title">{post.title}</h5>
-                  <p className="card-text">${post.pricePerNight} per night</p>
+                  <p className="card-text">£{post.pricePerNight} per night</p>
                   <Link to={`/properties/${post.slug.current}`} className="btn btn-dark">
                     View
                   </Link>

@@ -3,7 +3,19 @@ body {
   font-family: 'Nunito Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f1f1f1;
+  background-color: hsl(0, 0%, 95%);
 }
 
 
+/* Properties.css */
+
+.slider-item {
+  text-align: center; /* Center the text */
+  padding: 0 10px; /* Adjust padding to reduce space between items */
+}
+
+.slider-item img {
+  width: 48px; /* Set the width of the icon */
+  height: 48px; /* Set the height of the icon */
+  margin-bottom: 10px; /* Add some bottom margin to create space between the icon and text */
+}
