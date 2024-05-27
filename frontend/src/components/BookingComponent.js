@@ -51,7 +51,7 @@ const BookingComponent = ({ pricePerNight, maxGuests, property, slug }) => {
   return (
     <div className="container border rounded p-4 mt-4 shadow">
       <h2 className="mb-2">Book this property</h2>
-      <p className="fw-bold mb-4">${pricePerNight} per night</p>
+      <p className="fw-bold mb-4">£{pricePerNight} per night</p>
       <div className="form-group mb-3">
         <label>Check-in&nbsp;&nbsp;&nbsp;</label>
         <DatePicker
@@ -83,7 +83,7 @@ const BookingComponent = ({ pricePerNight, maxGuests, property, slug }) => {
       <hr />
       <button className="btn btn-primary w-100 mt-2" onClick={handleReserve}>Reserve</button>
       {checkInDate && checkOutDate && (
-        <p className="fw-bold">Total Price: ${totalPrice}</p>
+        <p className="fw-bold">Total Price: £{totalPrice}</p>
       )}
     </div>
   );

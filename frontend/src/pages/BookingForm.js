@@ -128,7 +128,7 @@ const BookingForm = () => {
               <img src={postData.mainImage.asset.url} className="card-img-top" alt={postData.title} />
               <div className="card-body">
                 <h5 className="card-title">{postData.title}</h5>
-                <p className="card-text">Price per night: ${postData.pricePerNight}</p>
+                <p className="card-text">Price per night: £{postData.pricePerNight}</p>
                 <p className="card-text">Number of beds: {beds}</p>
               </div>
             </div>
