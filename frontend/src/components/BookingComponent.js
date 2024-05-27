@@ -1,9 +1,21 @@
-// BookingComponent.js
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
+
+// Custom input component for DatePicker
+const CustomDateInput = React.forwardRef(({ value, onClick }, ref) => (
+  <input
+    type="text"
+    className="form-control"
+    onClick={onClick}
+    value={value}
+    readOnly
+    ref={ref}
+    placeholder="Select a date"
+  />
+));
 
 const BookingComponent = ({ pricePerNight, maxGuests, property, slug }) => {
   const [checkInDate, setCheckInDate] = useState(null);
@@ -32,7 +44,6 @@ const BookingComponent = ({ pricePerNight, maxGuests, property, slug }) => {
     navigate(url); // Use navigate function to navigate to the booking page
   };
   
-
   const guestOptions = Array.from({ length: maxGuests }, (_, i) => ({
     value: i + 1,
     label: `${i + 1} guest${i + 1 > 1 ? 's' : ''}`,
@@ -48,8 +59,7 @@ const BookingComponent = ({ pricePerNight, maxGuests, property, slug }) => {
           selected={checkInDate}
           onChange={(date) => setCheckInDate(date)}
           minDate={new Date()}
-          className="form-control"
-          placeholderText="Select a date"
+          customInput={<CustomDateInput />}
         />
       </div>
       <div className="form-group mb-3">
@@ -58,8 +68,7 @@ const BookingComponent = ({ pricePerNight, maxGuests, property, slug }) => {
           selected={checkOutDate}
           onChange={(date) => setCheckOutDate(date)}
           minDate={checkInDate}
-          className="form-control"
-          placeholderText="Select a date"
+          customInput={<CustomDateInput />}
         />
       </div>
       <div className="form-group mb-3">
