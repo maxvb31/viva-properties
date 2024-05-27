@@ -8,7 +8,7 @@ export default function SinglePost() {
   const [singlePost, setSinglePost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const { slug } = useParams();
-  const [mainImageAspectRatio, setMainImageAspectRatio] = useState(null); // State to track main image aspect ratio
+  const [mainImageAspectRatio, setMainImageAspectRatio] = useState(null);
 
   useEffect(() => {
     client
@@ -106,8 +106,8 @@ export default function SinglePost() {
               <BookingComponent 
                 pricePerNight={singlePost.pricePerNight} 
                 maxGuests={singlePost.beds} 
-                property={singlePost} // Pass the entire property object
-                slug={slug} // Pass the slug prop
+                property={singlePost} 
+                slug={slug} 
               />
             </div>
           </div>
