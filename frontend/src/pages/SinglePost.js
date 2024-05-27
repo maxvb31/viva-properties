@@ -62,7 +62,7 @@ export default function SinglePost() {
           <h1 className='display-2 fw-bold text-center'>{singlePost.title}</h1>
           <div className="row">
             <div className="col-md-6">
-              {singlePost.mainImage && (
+              {singlePost.mainImage && singlePost.mainImage.asset && (
                 <img
                   className="img-fluid mb-4"
                   src={singlePost.mainImage.asset.url}
@@ -76,17 +76,19 @@ export default function SinglePost() {
                 {singlePost.propertyImages &&
                   singlePost.propertyImages.map((image, index) => (
                     <div key={index} className="col-6" style={{ maxHeight: '50%', overflow: 'hidden' }}>
-                      <img
-                        className="img-fluid"
-                        src={image.asset.url}
-                        alt={image.alt || `Property Image ${index + 1}`}
-                        style={{
-                          objectFit: 'cover',
-                          width: '100%',
-                          height: '97%',
-                          aspectRatio: mainImageAspectRatio
-                        }}
-                      />
+                      {image && image.asset && (
+                        <img
+                          className="img-fluid"
+                          src={image.asset.url}
+                          alt={image.alt || `Property Image ${index + 1}`}
+                          style={{
+                            objectFit: 'cover',
+                            width: '100%',
+                            height: '97%',
+                            aspectRatio: mainImageAspectRatio
+                          }}
+                        />
+                      )}
                     </div>
                   ))}
               </div>
