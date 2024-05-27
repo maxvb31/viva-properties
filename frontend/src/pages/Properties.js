@@ -13,6 +13,7 @@ export default function Properties() {
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [featuredPost, setFeaturedPost] = useState(null);
+  const [sliderReady, setSliderReady] = useState(false); // New state for slider readiness
 
   useEffect(() => {
     // Fetch categories
@@ -52,6 +53,7 @@ export default function Properties() {
         setPosts(allPostsData);
         setAllPosts(allPostsData);
         setFeaturedPost(featuredPostData);
+        setSliderReady(true); // Set slider as ready once data is fetched
       })
       .catch(console.error);
   }, []);
@@ -78,7 +80,7 @@ export default function Properties() {
         breakpoint: 1024,
         settings: {
           slidesToShow: 6,
-          slidesToScroll: 6, // Match slidesToShow for better experience
+          slidesToScroll: 6,
           initialSlide: 0,
         },
       },
@@ -86,7 +88,7 @@ export default function Properties() {
         breakpoint: 768,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 4, // Match slidesToShow for better experience
+          slidesToScroll: 4,
           initialSlide: 0,
         },
       },
@@ -94,7 +96,7 @@ export default function Properties() {
         breakpoint: 480,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2, // Match slidesToShow for better experience
+          slidesToScroll: 2,
           initialSlide: 0,
         },
       },
@@ -107,21 +109,23 @@ export default function Properties() {
         <h1 className="display-3 fw-bold">Find Properties</h1>
         <div className="d-flex justify-content-center">
           <div className="mb-3 w-100">
-            <Slider {...settings}>
-              {categories.map((category) => (
-                <div key={category._id} className="text-center slider-item" onClick={() => handleCategoryClick(category.title)} style={{ cursor: 'pointer', padding: '0 10px' }}>
-                  <div className="d-flex flex-column align-items-center">
-                    <img
-                      src={category.iconUrl}
-                      alt={category.title}
-                      className="me-2"
-                      style={{ width: '48px', height: '48px', marginBottom: '10px' }}
-                    />
-                    <div>{category.title}</div>
+            {sliderReady && (
+              <Slider {...settings}>
+                {categories.map((category) => (
+                  <div key={category._id} className="text-center slider-item" onClick={() => handleCategoryClick(category.title)} style={{ cursor: 'pointer', padding: '0 10px' }}>
+                    <div className="d-flex flex-column align-items-center">
+                      <img
+                        src={category.iconUrl}
+                        alt={category.title}
+                        className="me-2"
+                        style={{ width: '48px', height: '48px', marginBottom: '10px' }}
+                      />
+                      <div>{category.title}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </Slider>
+                ))}
+              </Slider>
+            )}
           </div>
         </div>
         <p className="text-center mb-3">Viewing {filteredPosts.length} properties</p>
