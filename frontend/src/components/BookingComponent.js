@@ -4,7 +4,6 @@ import Select from 'react-select';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
 
-// Custom input component for DatePicker
 const CustomDateInput = React.forwardRef(({ value, onClick }, ref) => (
   <input
     type="text"
@@ -41,7 +40,7 @@ const BookingComponent = ({ pricePerNight, maxGuests, property, slug }) => {
     
     const url = `/booking/${slug}`;
     console.log('Navigating to:', url);
-    navigate(url); // Use navigate function to navigate to the booking page
+    navigate(url); 
   };
   
   const guestOptions = Array.from({ length: maxGuests }, (_, i) => ({

@@ -13,16 +13,16 @@ export default function Properties() {
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [featuredPost, setFeaturedPost] = useState(null);
-  const [sliderReady, setSliderReady] = useState(false); // New state for slider readiness
+  const [sliderReady, setSliderReady] = useState(false); 
 
   useEffect(() => {
-    // Fetch categories
+    // Fetch categories for icons slider
     client
       .fetch('*[_type == "category"] { title, _id, "iconUrl": icon.asset->url }')
       .then((data) => setCategories(data))
       .catch(console.error);
 
-    // Fetch all posts with mainImage and pricePerNight
+    // Fetch all data from sanity
     client
       .fetch(
         `*[_type == "post"] | order(orderRank asc) {
@@ -53,7 +53,7 @@ export default function Properties() {
         setPosts(allPostsData);
         setAllPosts(allPostsData);
         setFeaturedPost(featuredPostData);
-        setSliderReady(true); // Set slider as ready once data is fetched
+        setSliderReady(true); 
       })
       .catch(console.error);
   }, []);
@@ -95,8 +95,8 @@ export default function Properties() {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           initialSlide: 0,
         },
       },
@@ -118,7 +118,7 @@ export default function Properties() {
                         src={category.iconUrl}
                         alt={category.title}
                         className="me-2"
-                        style={{ width: '48px', height: '48px', marginBottom: '10px' }}
+                        style={{ width: '48px', height: '48px', marginBottom: '10px', cursor: 'pointer' }} // Inline cursor pointer
                       />
                       <div>{category.title}</div>
                     </div>

@@ -1,4 +1,4 @@
-// CategoryIcons.js
+//BACKUP NOT USED IN PROD
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import client from '../client';

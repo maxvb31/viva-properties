@@ -4,7 +4,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Link } from 'react-router-dom';
 
-// Define a custom icon if necessary
+// Defined a custom icon so pin ico can be used
 const customIcon = L.icon({
     iconUrl: process.env.PUBLIC_URL + '/pin.png',
     iconSize: [25, 41],
@@ -22,7 +22,7 @@ const Map = ({ posts }) => {
       {posts.map((post) => (
         <Marker
           key={post.slug.current}
-          position={[post.latitude, post.longitude]}
+          position={[post.latitude, post.longitude]} //use new location sanity data
           icon={customIcon}
         >
           <Popup>

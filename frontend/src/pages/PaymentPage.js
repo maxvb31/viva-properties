@@ -12,17 +12,17 @@ export default function PaymentPage() {
           quantity: 1
         }],
         mode: 'payment',
-        successUrl: 'http://localhost:3000', // Corrected URL
-        cancelUrl: 'http://localhost:3000/cancel',   // Corrected URL
+        successUrl: 'http://localhost:3000', // REMEMBER CHANGE TO HTTPS
+        cancelUrl: 'http://localhost:3000/cancel',   // REMEMBER CHANGE TO HTTPS
       });
 
       if (error) {
         console.error('Error during redirect to Checkout:', error);
-        // Handle error, show message to user, etc.
+        
       }
     } catch (error) {
       console.error('Error during redirect to Checkout:', error);
-      // Handle error, show message to user, etc.
+    
     }
   };
 

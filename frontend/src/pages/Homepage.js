@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Homepage = () => {
   const backgroundStyle = {
-    backgroundImage: `url(/bg-min.png)`, // Assuming the image is located in the public directory
+    backgroundImage: `url(/bg-min.png)`, 
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   };

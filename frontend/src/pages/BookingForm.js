@@ -5,7 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-// Custom input component for DatePicker
+// Using custom datepicker component to avoid keyboard popup for touchscreen
 const CustomDateInput = React.forwardRef(({ value, onClick }, ref) => (
   <input
     type="text"
@@ -90,11 +90,11 @@ const BookingForm = () => {
 
       if (error) {
         console.error('Error during redirect to Checkout:', error);
-        // Handle error, show message to user, etc.
+   
       }
     } catch (error) {
       console.error('Error during redirect to Checkout:', error);
-      // Handle error, show message to user, etc.
+
     }
   };
 
